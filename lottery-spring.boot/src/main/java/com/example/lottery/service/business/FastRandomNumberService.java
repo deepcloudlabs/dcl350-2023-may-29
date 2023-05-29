@@ -1,13 +1,17 @@
 package com.example.lottery.service.business;
 
+import java.util.concurrent.ThreadLocalRandom;
+
+import org.springframework.stereotype.Service;
+
 import com.example.lottery.service.RandomNumberService;
 
+@Service
 public class FastRandomNumberService implements RandomNumberService {
 
 	@Override
 	public int generate(int min, int max) {
-		// TODO Auto-generated method stub
-		return 0;
+		return ThreadLocalRandom.current().nextInt(min, max+1);
 	}
 
 }
