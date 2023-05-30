@@ -3,12 +3,15 @@ package com.example.lottery.service.business;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.RequestScope;
 
+import com.example.lottery.SofttechService;
 import com.example.lottery.service.LotteryService;
 import com.example.lottery.service.RandomNumberService;
 
-@Service
+@SofttechService
+@RequestScope
+// @Scope("request")
 public class StandardLotteryService implements LotteryService {
 	// dependency -> interface
 	private final RandomNumberService randomNumberService;
@@ -16,6 +19,7 @@ public class StandardLotteryService implements LotteryService {
 	// constructor injection
 	public StandardLotteryService(RandomNumberService randomNumberService) {
 		this.randomNumberService = randomNumberService;
+		System.err.println("StandardLotteryService(RandomNumberService randomNumberService)");
 	}
 
 	@Override
