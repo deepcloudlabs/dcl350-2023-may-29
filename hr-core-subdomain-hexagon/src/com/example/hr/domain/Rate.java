@@ -6,6 +6,7 @@ import com.example.ddd.ValueObject;
 
 @ValueObject
 public final class Rate {
+	public static final Rate PROMOTION_RATE = Rate.createRate(25);
 	private final int value;
 
 	private Rate(int value) {

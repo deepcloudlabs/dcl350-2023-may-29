@@ -22,6 +22,10 @@ public final class Money {
 		return value;
 	}
 
+	public static Money valueOf(double value) {
+		return Money.valueOf(FiatCurrency.TL, value);
+	}
+
 	public static Money valueOf(FiatCurrency currency, double value) {
 		Objects.requireNonNull(currency);
 		if (value <= 0.0)
@@ -53,6 +57,10 @@ public final class Money {
 
 	public Money multiply(double factor) {
 		return Money.valueOf(currency, value * factor);
+	}
+
+	public boolean lessThan(Money other) {
+		return this.value < other.value;
 	}
 
 }
