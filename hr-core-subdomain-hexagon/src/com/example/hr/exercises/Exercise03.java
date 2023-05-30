@@ -4,6 +4,7 @@ import com.example.hr.domain.BirthYear;
 import com.example.hr.domain.Employee;
 import com.example.hr.domain.TcKimlikNo;
 
+@SuppressWarnings("unused")
 public class Exercise03 {
 
 	public static void main(String[] args) {
