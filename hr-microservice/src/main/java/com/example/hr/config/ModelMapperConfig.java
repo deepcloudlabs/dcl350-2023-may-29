@@ -50,6 +50,7 @@ public class ModelMapperConfig {
 	private static final Converter<HireEmployeeRequest,Employee>
 	HIRE_EMPLOYEE_REQUEST_TO_EMPLOYEE_CONVERTER = context -> {
 		var request = context.getSource();
+		System.out.println(request);
 		var employee = new Employee.Builder(TcKimlikNo.valueOf(request.getIdentityNo()), new BirthYear(request.getBirthYear()))
 		                    .fullname(request.getFirstName(),request.getLastName())
 		                    .salary(request.getCurrency(),request.getSalary())
@@ -58,6 +59,7 @@ public class ModelMapperConfig {
 		                    .jobStyle(request.getJobStyle().name())
 		                    .photo(request.getPhoto())
 		                    .build();
+		System.out.println(employee);
 		return employee;
 	};	
 	private static final Converter<EmployeeEntity,Employee>
