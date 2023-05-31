@@ -4,9 +4,11 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.hr.domain.Employee;
 import com.example.hr.domain.TcKimlikNo;
+import com.example.hr.entity.EmployeeEntity;
 import com.example.hr.repository.EmployeeEntityRepository;
 import com.example.hr.repository.EmployeeRepository;
 
@@ -32,15 +34,21 @@ public class EmployeeRepositoryJpaAdapter implements EmployeeRepository {
 	}
 
 	@Override
+	@Transactional
 	public Employee persist(Employee employee) {
-		// TODO Auto-generated method stub
-		return null;
+		var employeeEntity =modelMapper.map(employee, EmployeeEntity.class);
+		var persistedEmployeeEntity = empRepo.save(employeeEntity );
+		return modelMapper.map(persistedEmployeeEntity, Employee.class);
 	}
 
 	@Override
+	@Transactional
 	public Optional<Employee> remove(TcKimlikNo identity) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return empRepo.findById(identity.getValue())
+				      .map(this::mapEmployeeEntityToEmployee);
 	}
 
+	public Employee mapEmployeeEntityToEmployee(EmployeeEntity entity) {
+		return modelMapper.map(entity, Employee.class);
+	}
 }

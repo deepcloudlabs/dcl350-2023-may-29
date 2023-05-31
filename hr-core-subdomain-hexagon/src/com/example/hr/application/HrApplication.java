@@ -1,6 +1,5 @@
 package com.example.hr.application;
 
-import static com.example.hexagonal.PortType.DRIVEN_PORT;
 import static com.example.hexagonal.PortType.DRIVER_PORT;
 
 import java.util.Optional;

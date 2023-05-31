@@ -10,5 +10,5 @@ import com.example.hr.entity.EmployeeEntity;
 
 public interface EmployeeEntityRepository extends JpaRepository<EmployeeEntity, String>{
        List<EmployeeEntity> findAllByBirthYearBetween(int fromYear,int toYear);
-       List<EmployeeEntity> findAllByJobStyleAndDepartment(JobStyle jobStyle,Department department);
+       List<EmployeeEntity> findAllByJobStyleAndDepartmentsIn(JobStyle jobStyle,List<Department> department);
 }

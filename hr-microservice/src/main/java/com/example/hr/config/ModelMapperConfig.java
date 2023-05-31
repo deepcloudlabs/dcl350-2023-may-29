@@ -31,6 +31,22 @@ public class ModelMapperConfig {
 		employeeResponse.setPhoto(employee.getPhoto().getBase64Values());
 		return employeeResponse;
 	};
+	private static final Converter<Employee,EmployeeEntity>
+	EMPLOYEE_TO_EMPLOYEE_ENTITY_CONVERTER = context -> {
+		var employee = context.getSource();
+		var employeeEntity = new EmployeeEntity();
+		employeeEntity.setIdentityNo(employee.getIdentityNo().getValue());
+		employeeEntity.setFirstName(employee.getFullname().firstName());
+		employeeEntity.setLastName(employee.getFullname().lastName());
+		employeeEntity.setSalary(employee.getSalary().getValue());
+		employeeEntity.setCurrency(employee.getSalary().getCurrency());
+		employeeEntity.setIban(employee.getIban().getValue());
+		employeeEntity.setBirthYear(employee.getBirthYear().value());
+		employeeEntity.setDepartments(employee.getDepartments());
+		employeeEntity.setJobStyle(employee.getJobStyle());
+		employeeEntity.setPhoto(employee.getPhoto().getValues());
+		return employeeEntity;
+	};	
 	private static final Converter<HireEmployeeRequest,Employee>
 	HIRE_EMPLOYEE_REQUEST_TO_EMPLOYEE_CONVERTER = context -> {
 		var request = context.getSource();
@@ -63,6 +79,7 @@ public class ModelMapperConfig {
 		modelMapper.addConverter(EMPLOYEE_TO_EMPLOYEE_RESPONSE_CONVERTER, Employee.class, EmployeeResponse.class);
 		modelMapper.addConverter(HIRE_EMPLOYEE_REQUEST_TO_EMPLOYEE_CONVERTER, HireEmployeeRequest.class, Employee.class);
 		modelMapper.addConverter(EMPLOYEE_ENTITY_TO_EMPLOYEE_CONVERTER, EmployeeEntity.class, Employee.class);
+		modelMapper.addConverter(EMPLOYEE_TO_EMPLOYEE_ENTITY_CONVERTER, Employee.class, EmployeeEntity.class);
 		return modelMapper;
 	}
 }
