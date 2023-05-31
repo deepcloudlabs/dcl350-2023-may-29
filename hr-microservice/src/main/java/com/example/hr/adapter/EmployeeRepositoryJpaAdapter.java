@@ -44,8 +44,9 @@ public class EmployeeRepositoryJpaAdapter implements EmployeeRepository {
 	@Override
 	@Transactional
 	public Optional<Employee> remove(TcKimlikNo identity) {
-		return empRepo.findById(identity.getValue())
-				      .map(this::mapEmployeeEntityToEmployee);
+		Optional<EmployeeEntity> foundEmployee = empRepo.findById(identity.getValue());
+		foundEmployee.ifPresent(empRepo::delete);
+		return foundEmployee.map(this::mapEmployeeEntityToEmployee);
 	}
 
 	public Employee mapEmployeeEntityToEmployee(EmployeeEntity entity) {
