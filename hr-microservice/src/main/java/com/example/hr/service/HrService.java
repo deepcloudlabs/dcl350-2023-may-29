@@ -36,8 +36,9 @@ public class HrService {
 
 	@Transactional
 	public EmployeeResponse fireEmployee(String identityNo) {
-		// TODO Auto-generated method stub
-		return null;
+		var employee = hrApplication.fireEmployee(TcKimlikNo.valueOf(identityNo))
+                .orElseThrow(() -> new IllegalArgumentException("Employee with the identit no (%s) does not exist.".formatted(identityNo)));
+		return modelMapper.map(employee, EmployeeResponse.class);
 	}
 
 }
