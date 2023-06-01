@@ -25,6 +25,8 @@ public class LotteryRestController {
 	private int lotteryMax;
 	@Value("${lottery.size}")
 	private int lotterySize;
+	@Value("${server.port}")
+	private int port;
 	
 	// dependency injection through constructor
 	public LotteryRestController(LotteryService lotteryService) {
@@ -33,6 +35,7 @@ public class LotteryRestController {
 
 	@GetMapping(params = {"column"})
 	public List<List<Integer>> getLotteryNumbers(@RequestParam int column){
+		System.err.println("Server running at port %d has received a request.".formatted(port));
 		return lotteryService.draw(lotteryMax, lotterySize, column);
 	}
 }

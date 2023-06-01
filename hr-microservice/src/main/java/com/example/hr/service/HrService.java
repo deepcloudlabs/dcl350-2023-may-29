@@ -11,6 +11,9 @@ import com.example.hr.dto.request.HireEmployeeRequest;
 import com.example.hr.dto.response.EmployeeResponse;
 import com.example.hr.dto.response.HireEmployeeResponse;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead.Type;
+
 @Service
 public class HrService {
 	private final HrApplication hrApplication;
@@ -28,6 +31,7 @@ public class HrService {
 	}
 
 	@Transactional
+	@Bulkhead(name = "hiringBulkHead", type = Type.THREADPOOL)
 	public HireEmployeeResponse hireEmployee(HireEmployeeRequest request) {
 		var employee = modelMapper.map(request, Employee.class);
 		hrApplication.hireEmployee(employee);
