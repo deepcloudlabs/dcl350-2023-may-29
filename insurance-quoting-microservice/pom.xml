@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>reactive-crm-microservice</artifactId>
+	<artifactId>insurance-quoting-microservice</artifactId>
 	<version>0.0.1</version>
-	<name>reactive-crm-microservice</name>
+	<name>insurance-quoting-microservice</name>
 	<description>Reactive MicroService</description>
 	<properties>
 		<java.version>17</java.version>
@@ -29,15 +29,7 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.projectreactor.kafka</groupId>
-			<artifactId>reactor-kafka</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-webflux-ui</artifactId>
-			<version>1.6.12</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
